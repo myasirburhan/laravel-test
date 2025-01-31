@@ -32,6 +32,7 @@ class JWTAuthController extends Controller
                 'success' => true,
                 'message' => null,
                 'data' => [],
+                'errors' => null,
                 'token' => $token,
             ]);
         } catch (JWTException $e) {
