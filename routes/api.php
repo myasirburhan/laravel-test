@@ -27,6 +27,7 @@ Route::prefix('v1')->group(function () {
         |--------------------------------------------------------------------------
         */
         Route::get('me', [JWTAuthController::class, 'getUser']);
+        Route::get('refresh-token', [JWTAuthController::class, 'refreshToken']);
 
         /*
         |--------------------------------------------------------------------------
