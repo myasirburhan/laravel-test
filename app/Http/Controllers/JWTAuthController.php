@@ -12,6 +12,7 @@ class JWTAuthController extends Controller
     public function login(Request $req)
     {
         $credentials = $req->only('email', 'password');
+        $token = null;
 
         try {
             if (! $token = JWTAuth::attempt($credentials)) {
@@ -41,6 +42,7 @@ class JWTAuthController extends Controller
                 'message' => 'Login failed',
                 'data' => [],
                 'token' => $token,
+                'errors' => $e->getMessage(),
             ], 500);
         }
     }
@@ -69,5 +71,21 @@ class JWTAuthController extends Controller
         JWTAuth::invalidate(JWTAuth::getToken());
 
         return response()->json(['message' => 'Successfully logged out']);
+    }
+
+    /**
+     * refresh token
+     */
+    public function refreshToken()
+    {
+        // return JWTAuth::refresh(JWTAuth::getToken());
+        $token = JWTAuth::refresh(true, true);
+        return response()->json([
+            'success' => true,
+            'message' => null,
+            'data' => [],
+            'errors' => null,
+            'token' => $token,
+        ]);
     }
 }
