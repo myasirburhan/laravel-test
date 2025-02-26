@@ -19,6 +19,7 @@ class JWTAuthController extends Controller
                 return response()->json(['error' => 'Invalid credentials'], 401);
             }
 
+            /*
             // Get the authenticated user.
             $user = Auth::user();
 
@@ -27,7 +28,9 @@ class JWTAuthController extends Controller
             //     'role' => $user->role,
             //     'name' => $user->name,
             // ])->fromUser($user);
+
             $token = JWTAuth::fromUser($user);
+            */
 
             return response()->json([
                 'success' => true,
@@ -50,6 +53,8 @@ class JWTAuthController extends Controller
     // Get authenticated user
     public function getUser()
     {
+        // dd(Auth::user()); // OK
+
         /* get claims from payload */
         // $payload = JWTAuth::parseToken()->getPayload();
         // dd($payload->get('name'));
