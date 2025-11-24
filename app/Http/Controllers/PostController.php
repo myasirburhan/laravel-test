@@ -25,12 +25,14 @@ class PostController extends Controller
                 'success' => true,
                 'message' => 'Data Inserted',
                 'data' => [],
+                'errors' => []
             ], Response::HTTP_CREATED);
         } catch (\Throwable $th) {
             return response()->json([
                 'success' => false,
                 'message' => $th->getMessage(),
                 'data' => [],
+                'errors' => ['err' => $th->getMessage()]
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -44,12 +46,14 @@ class PostController extends Controller
                 'success' => true,
                 'message' => 'Data Loaded',
                 'data' => $data,
+                'errors' => []
             ], Response::HTTP_OK);
         } catch (Exception $th) {
             return response()->json([
                 'success' => false,
                 'message' => $th->getMessage(),
                 'data' => [],
+                'errors' => ['err' => $th->getMessage()]
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -68,12 +72,14 @@ class PostController extends Controller
                 'success' => true,
                 'message' => 'Data Updated',
                 'data' => [],
+                'errors' => []
             ], Response::HTTP_OK);
         } catch (Exception $th) {
             return response()->json([
                 'success' => false,
                 'message' => $th->getMessage(),
                 'data' => [],
+                'errors' => ['err' => $th->getMessage()]
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -88,12 +94,14 @@ class PostController extends Controller
                 'success' => true,
                 'message' => 'Data Deleted',
                 'data' => [],
+                'errors' => []
             ], Response::HTTP_OK);
         } catch (Exception $th) {
             return response()->json([
                 'success' => false,
                 'message' => $th->getMessage(),
                 'data' => [],
+                'errors' => ['err' => $th->getMessage()]
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
