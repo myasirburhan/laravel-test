@@ -16,7 +16,7 @@ class PostController extends Controller
         try {
             $param = [
                 'title' => $req->title,
-                'content' => $req->content,
+                'content' => $req->input('content'),
                 'image' => $req->image,
             ];
 
@@ -38,7 +38,8 @@ class PostController extends Controller
     public function findAll(Request $req): JsonResponse
     {
         try {
-            $data = Post::take(10)->skip(0)->get();
+            // $data = Post::take(10)->skip(0)->get();
+            $data = Post::paginate(10);
             return response()->json([
                 'success' => true,
                 'message' => 'Data Loaded',
@@ -59,7 +60,7 @@ class PostController extends Controller
             DB::beginTransaction();
             Post::find($id)->update([
                 'title' => $req->title,
-                'content' => $req->content,
+                'content' => $req->input('content'),
                 'image' => $req->image,
             ]);
             DB::commit();
